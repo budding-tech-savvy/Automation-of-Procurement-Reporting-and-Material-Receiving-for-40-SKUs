@@ -1,6 +1,12 @@
 # Automation-of-Procurement-Reporting-and-Material-Receiving-for-40-SKUs
 Developed a system using Google Sheets, Forms, and App Script to automate daily procurement reporting for 40+ SKUs and streamline material receipt tracking for over 1,000 vendor shipments annually. This solution saves 2 hours daily, improves data accuracy, and provides real-time visibility into GRN status, enhancing procurement efficiency.
 
+
+![image](https://github.com/user-attachments/assets/b2de10be-f126-4e65-b9b5-6209b91e1d12)
+![image](https://github.com/user-attachments/assets/2d3fbfa1-78ea-4291-8a77-7e3fad4dd27c)
+![image](https://github.com/user-attachments/assets/ced8dc16-2ecb-44df-98c1-b996ec30dc01)
+
+
 # Introduction
 In procurement operations, tracking and managing incoming shipments from multiple vendors is crucial for inventory accuracy and process efficiency. Delays in reporting, errors in data entry, and difficulty in accessing real-time data were common bottlenecks. To streamline these processes, I developed a solution using Google Sheets, Forms, and App Script, which automated daily reporting, improved material receipt accuracy, and enabled real-time tracking of Goods Receipt Notes (GRN).
 
@@ -23,7 +29,7 @@ Responses from Google Forms automatically populated Google Sheets.
 A master tracking sheet compiled vendor shipment data,DOI(Days of inventory for packaging material) received goods details, and any discrepancies or issues noted upon delivery.
 
 # Automation with Google App Script:
-
+```sql
 # DOI Warning Email Automation Script
 
 This Google Apps Script automates the process of identifying items with a Days of Inventory (DOI) below 15, sending an email notification, and attaching a CSV file with details. It highlights the DOI values in red for quick reference.
@@ -45,14 +51,80 @@ This Google Apps Script automates the process of identifying items with a Days o
 
 ### License
 This project is licensed under the MIT License.
+```
+```sql
+function sendDOIWarningEmail() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Nov');
+  var data = sheet.getDataRange().getValues();
+  
+  // Define the HTML table structure for the email
+  var emailBody = "<p>Good Morning Sir!</p>";
+  emailBody += "<p>The following items have DOI below 15 as per Master Consumble tracker Nov'24:</p>";
+  emailBody += "<table border='1' style='border-collapse: collapse;'>";
+  
+  // Add header row with bold formatting
+  emailBody += "<tr style='font-weight: bold;'>";
+  emailBody += "<th>Location</th>";
+  emailBody += "<th>Article Description</th>";
+  emailBody += "<th>DOI(AVERAGE)</th>";
+  emailBody += "</tr>";
+  
+  var emailToSend = false;
+  var csvContent = "Location,Article Description,DOI(AVERAGE)\n"; // CSV header
+  
+  // Loop through the data rows
+  for (var i = 1; i < data.length; i++) {
+    var doiIndex = data[0].indexOf("DOI(AVERAGE)");
+    var locationIndex = data[0].indexOf("Location1");
+    var descriptionIndex = data[0].indexOf("Article Description");
+    
+    var doi = data[i][doiIndex];
+    var location = data[i][locationIndex];
+    var description = data[i][descriptionIndex];
+    
+    // Check if DOI is below 15
+    if (doi < 15) {
+      var roundedDOI = Math.round(doi);
+
+      // Add the row to the email body
+      emailBody += "<tr>";
+      emailBody += "<td>" + location + "</td>";
+      emailBody += "<td>" + description + "</td>";
+      // Highlight DOI with red background color in the email body
+      emailBody += "<td style='background-color: red;'>" + roundedDOI + "</td>";
+      emailBody += "</tr>";
+      
+      // Add the row to the CSV content
+      csvContent += location + "," + description + "," + roundedDOI + "\n";
+      
+      // Set the DOI cell's background color to red in the sheet
+      sheet.getRange(i + 1, doiIndex + 1).setBackground("red");
+
+      emailToSend = true;
+    }
+  }
+
+  emailBody += "</table>";
+
+  if (emailToSend) {
+    // Create a Blob from the CSV content
+    var blob = Utilities.newBlob(csvContent, "text/csv", "DOI_Warning_Items.csv");
+    
+    // Send the email with the CSV file attached
+    MailApp.sendEmail({
+      to: "guptaraghu386@gmail.com", // Replace with the actual email addresses
+      subject: "DOI Warning: Items Below 15 Days",
+      htmlBody: emailBody, // Send the email as HTML to preserve table formatting
+      attachments: [blob] // Attach the CSV file
+    });
+  }
+}
+```
 
 
 
-
-
-
-**Daily Reporting**: The script generated daily procurement summaries, sent via email to relevant stakeholders, saving 2 hours per day compared to manual reporting.
-**GRN Tracking**: An automated dashboard updated in real-time, showing the status of all GRNs by SKU, vendor, and date, ensuring stakeholders had immediate visibility.
+**Daily Reporting**: The script generated daily procurement summaries, sent via email to relevant stakeholders, saving 2 hours per day compared to manual reporting.<br>
+**GRN Tracking**: An automated dashboard updated in real-time, showing the status of all GRNs by SKU, vendor, and date, ensuring stakeholders had immediate visibility.<br>
 **Notifications**:
 Automated alerts informed the procurement team and warehouse managers of discrepancies or delays in shipments, allowing for quicker resolutions.
 
