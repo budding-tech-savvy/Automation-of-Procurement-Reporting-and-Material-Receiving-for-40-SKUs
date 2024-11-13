@@ -123,7 +123,7 @@ function sendDOIWarningEmail() {
 
 
 
-**Daily Reporting**: The script generated daily procurement summaries, sent via email to relevant stakeholders, saving 2 hours per day compared to manual reporting.<br>
+**Daily Reporting**: The script generated daily procurement summaries along with Csv file, sent via email to relevant stakeholders, saving 2 hours per day compared to manual reporting.<br>
 **GRN Tracking**: An automated dashboard updated in real-time, showing the status of all GRNs by SKU, vendor, and date, ensuring stakeholders had immediate visibility.<br>
 **Notifications**:
 Automated alerts informed the procurement team and warehouse managers of discrepancies or delays in shipments, allowing for quicker resolutions.
