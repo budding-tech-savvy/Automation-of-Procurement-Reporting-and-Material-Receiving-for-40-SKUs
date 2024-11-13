@@ -137,11 +137,9 @@ Automated alerts informed the procurement team and warehouse managers of discrep
 A vendor ships a batch of SKU A100 to the warehouse. They log the shipment details via the Google Form, which automatically populates Google Sheets. When the shipment arrives, the warehouse team logs receipt data through another form, noting any discrepancies (e.g., damaged goods, incorrect quantity). The App Script checks for discrepancies, and sends notifications if there’s a mismatch, ensuring both teams are immediately informed.
 
 # Challenges Faced
-**Data Consistency:** Ensuring that data from vendors and warehouse teams matched consistently was challenging.
-
-**Solution:** Implemented validations in Google Forms to minimize errors during data entry and set up automated checks with App Script.
-**Integration Delays:** Google Sheets occasionally lagged with large data volumes from multiple forms.
-
+**Data Consistency:** Ensuring that data from vendors and warehouse teams matched consistently was challenging.<br>
+**Solution:** Implemented validations in Google Forms to minimize errors during data entry and set up automated checks with App Script.<br>
+**Integration Delays:** Google Sheets occasionally lagged with large data volumes from multiple forms.<br>
 **Solution:** Optimized the App Script to run batch processes during low-traffic periods.
 
 # Conclusion
