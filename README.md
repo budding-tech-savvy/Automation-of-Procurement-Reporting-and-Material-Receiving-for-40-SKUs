@@ -13,8 +13,8 @@ In procurement operations, tracking and managing incoming shipments from multipl
 # Problem Statement
 Our procurement team handles 40+ SKUs with over 1,000 vendor shipments each year. Manual entry and processing of shipment and receipt data were:
 
-**Time-consuming**: Manual reporting took 2-3 hours daily.
-**Error-prone**: Frequent data entry errors affected tracking accuracy.
+**Time-consuming**: Manual reporting took 2-3 hours daily.<br>
+**Error-prone**: Frequent data entry errors affected tracking accuracy.<br>
 **Lacking Real-time Data**: No immediate insight into shipment status, leading to potential delays in restocking or shipment scheduling.
 These challenges highlighted the need for a more efficient, automated approach to manage procurement reporting and GRN tracking.
 
@@ -129,8 +129,8 @@ function sendDOIWarningEmail() {
 Automated alerts informed the procurement team and warehouse managers of discrepancies or delays in shipments, allowing for quicker resolutions.
 
 # Technology Used
-**Google Sheets:** For storing, tracking, and reporting procurement data.
-**Google Forms:** For data collection from vendors and warehouse teams.
+**Google Sheets:** For storing, tracking, and reporting procurement data.<br>
+**Google Forms:** For data collection from vendors and warehouse teams.<br>
 **Google App Script:** To automate data processing, report generation, and real-time tracking of GRNs.
 
 # Real-Time Example
