@@ -1,0 +1,2 @@
+# Automation-of-Procurement-Reporting-and-Material-Receiving-for-40-SKUs
+Developed a system using Google Sheets, Forms, and App Script to automate daily procurement reporting for 40+ SKUs and streamline material receipt tracking for over 1,000 vendor shipments annually. This solution saves 2 hours daily, improves data accuracy, and provides real-time visibility into GRN status, enhancing procurement efficiency.
